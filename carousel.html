@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- DOM id document object model every thing was documented like a tree structure -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-container {
+            width: 300px;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(to right, rgb(201, 48, 48), purple);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Arrows outside the slider */
+        .arrow {
+    font-size: 30px;
+    color: white; /* Make the arrow visible */
+    cursor: pointer;
+    user-select: none;
+    background-color: rgb(133, 180, 221); /* Circle background */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex; /* Use flex to center the arrow */
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.arrow:hover {
+    background-color: purple; /* Change background on hover */
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="slider-wrapper">
+        <div class="arrow left" onclick="changepicb()">&#10094;</div>
+        <div class="slider-container">
+            <img id="slider" src="" alt="banner_images">
+        </div>
+        <div class="arrow right" onclick="changepic()">&#10095;</div>
+    </div>
+
+    <script>
+        let imagecount = 0;
+        let images1 = [
+            "/images/3d-car.avif",
+            "/images/rolls.avif",
+            "/images/benz.avif"
+        ];
+
+        document.getElementById("slider").src = images1[0];
+
+        function changepic() {
+            imagecount = (imagecount + 1) % images1.length;
+            document.getElementById("slider").src = images1[imagecount];
+        }
+
+        function changepicb() {
+            imagecount = (imagecount - 1 + images1.length) % images1.length;
+            document.getElementById("slider").src = images1[imagecount];
+        }
+    </script>
+</body>
+
+</html>
+
